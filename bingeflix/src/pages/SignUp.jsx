@@ -42,5 +42,20 @@ const Container = styled.div`
     width: 100vw;
     display: grid;
     grid-template-rows: 15vh 85vh;
+    .body{
+        gap: 1rem;
+    }
+    .text{
+       gap: 1rem;
+       text-align: center;
+       font-size: 1.5rem;
+    }
+    h1{
+        padding: 0 25rem;
+    }
+  }
+  .form{
+    display: grid;
+    // grid-template-columns:
   }
 `
