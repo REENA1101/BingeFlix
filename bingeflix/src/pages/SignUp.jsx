@@ -14,13 +14,15 @@ export default function SignUp() {
           <h1>Unlimited movies, TV Shows and More</h1>
           <h4>Watch anywhere. Cancel anytime</h4>
           <h6>Ready to Watch? Enter your e-mail or create or restart memebership</h6>
+          </div>
 
           <div className = "form">
               <input type="email" placeholder = "Emial Address" name="email"/>
-              <input type="password" placeholder = "Password" name="email"/>
+              <input type="password" placeholder = "Password" name="password"/>
+              <button>Get Started</button>
           </div>
 
-          </div>
+          <button>Log In</button>
          
         </div>
     </Container>
