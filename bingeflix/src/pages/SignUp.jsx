@@ -2,10 +2,21 @@ import React from 'react'
 import styled from "styled-components"
 import BackgroundImage from '../components/BackgroundImage'
 import Header from '../components/Header'
+import { useState } from 'react'
 
 export default function SignUp() {
+  const [showPassword, setShowPassword] = useState(false) 
+  const [formValues, setFormValues] = useState({
+    email: "",
+    password: "",
+  })
+
+  const handleSignIn = async()=>{
+       console.log(formValues)
+  }
+
   return (
-    <Container className = "flex a-center j-between"> 
+    <Container showPassword = {showPassword}> 
         <BackgroundImage/>
        
     <div className='content'>
@@ -18,13 +29,26 @@ export default function SignUp() {
           </div>
 
           <div className = "form">
-              <input type="email" placeholder = "Emial Address" name="email"/>
-              <input type="password" placeholder = "Password" name="password"/>
-              <button>Get Started</button>
-                
+              <input type="email" placeholder = "Email Address" name="email"
+                value= {formValues.email}
+               onChange = {(e)=>setFormValues({...formValues,[e.target.name]: e.target.value, 
+               }
+               )}
+               />
+              { showPassword &&  (
+              <input type="password" placeholder = "Password" name="password"
+              value= {formValues.password}
+              onChange = {(e)=>setFormValues({...formValues,[e.target.name]: e.target.value, 
+              }
+              )}
+              />)}
+             
+              {
+                !showPassword && <button onClick= {()=>setShowPassword(true)}>Get Started</button>
+              }
+                  
           </div>
-          <button>Log In</button> 
-           
+          <button onClick = {handleSignIn}>Sign Up</button> 
          </div>
         </div>
     </Container>
@@ -56,13 +80,13 @@ const Container = styled.div`
   }
   .form{
     display: grid;
-    // grid-template-columns:
+    grid-template-columns: ${({showPassword})=>showPassword ? "1fr 1fr" : "2fr 1fr"};
     width: 60%;
     input{
        color: black;
        border: none;
        padding: 1rem;
-       font-size:1rem;
+       font-size: 1rem;
        border: 1px black solid;
        &:focus{
         outline: none;
@@ -74,8 +98,8 @@ const Container = styled.div`
         border: none;
         cursor: pointer;
         color: white;
-        border-radius: 0.2rem;
         font-weight: bolder;
+        border-radius: 0.2rem;
         font-size: 1.05rem;
     }
   }
