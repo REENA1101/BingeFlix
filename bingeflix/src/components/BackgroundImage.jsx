@@ -1,10 +1,20 @@
 import React from 'react'
-import background from "../assets"
+import background from "../assets/login.jpg"
+import styled from 'styled-components'
 
 export default function BackgroundImage() {
   return (
-    <div>
-        <img src="" alt=""/>
-    </div>
+    <Container>
+        <img src={background} alt="background"/>
+    </Container>
   )
 }
+
+const Container = styled.div`
+heigth : 100vh;
+width : 100vw;
+img{
+    heigth: 100vh;
+    width: 100vw;
+} 
+`
