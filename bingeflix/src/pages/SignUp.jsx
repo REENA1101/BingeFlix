@@ -5,11 +5,11 @@ import Header from '../components/Header'
 
 export default function SignUp() {
   return (
-    <Container> 
+    <Container className = "flex a-center j-between"> 
         <BackgroundImage/>
        
     <div className='content'>
-    <Header/>
+    <Header login/>
         <div className= "body flex column a-center j-center">
           <div className= "text flex column">
           <h1>Unlimited movies, TV Shows and More</h1>
