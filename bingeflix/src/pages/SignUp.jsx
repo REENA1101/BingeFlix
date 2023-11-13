@@ -5,10 +5,11 @@ import Header from '../components/Header'
 
 export default function SignUp() {
   return (
-    <Container>
+    <Container> 
         <BackgroundImage/>
-        <Header/>
+       
     <div className='content'>
+    <Header/>
         <div className= "body flex column a-center j-center">
           <div className= "text flex column">
           <h1>Unlimited movies, TV Shows and More</h1>
@@ -31,12 +32,12 @@ export default function SignUp() {
 }
 
 const Container = styled.div`
-position: relative;
-  .content{
+  position: relative;
+  .content {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0,0,0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     height: 100vh;
     width: 100vw;
     display: grid;
