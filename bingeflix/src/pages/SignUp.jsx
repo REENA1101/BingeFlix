@@ -21,11 +21,11 @@ export default function SignUp() {
               <input type="email" placeholder = "Emial Address" name="email"/>
               <input type="password" placeholder = "Password" name="password"/>
               <button>Get Started</button>
+                
           </div>
-
-          <button>Log In</button>
-         
-        </div>
+          <button>Log In</button> 
+           
+         </div>
         </div>
     </Container>
   )
@@ -57,5 +57,36 @@ const Container = styled.div`
   .form{
     display: grid;
     // grid-template-columns:
+    width: 60%;
+    input{
+       color: black;
+       border: none;
+       padding: 1rem;
+       font-size:1rem;
+       border: 1px black solid;
+       &:focus{
+        outline: none;
+       }
+    }
+    button{
+        padding: 0.5rem 1rem;
+        background-color: #e50914;
+        border: none;
+        cursor: pointer;
+        color: white;
+        border-radius: 0.2rem;
+        font-weight: bolder;
+        font-size: 1.05rem;
+    }
+  }
+  button{
+    padding: 0.5rem 1rem;
+    background-color: #e50914;
+    border: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 0.2rem;
+    font-weight: bolder;
+    font-size: 1.05rem;
   }
 `
