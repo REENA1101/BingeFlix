@@ -1,28 +1,17 @@
-import React from 'react'
-import styled from "styled-components"
-import BackgroundImage from '../components/BackgroundImage'
-import Header from '../components/Header'
-import { useState } from 'react'
-import {firebaseAuth} from "../utils/firebase-config"
-import { signInWithEmailAndPassword, onAuthStateChanged} from "firebase/auth"
-import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
+import React, { useState } from "react";
+import styled from "styled-components";
+import logo from "../assets/logo.png";
+import background from "../assets/login.jpg";
+import { useNavigate } from "react-router-dom";
+import BackgroundImage from "../components/BackgroundImage";
+import Header from "../components/Header";
+import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { firebaseAuth } from "../utils/firebase-config";
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(firebaseAuth, (currentUser) => {
-      if (currentUser) {
-        navigate('/');
-      }
-    });
-
-    // Clean up the subscription when the component unmounts
-    return () => unsubscribe();
-  }, [navigate]); // Include 'navigate' in the dependencies array to prevent stale closure
 
   const handleLogin = async () => {
     try {
@@ -32,6 +21,9 @@ function Login() {
     }
   };
 
+  onAuthStateChanged(firebaseAuth, (currentUser) => {
+    if (currentUser) navigate("/");
+  });
 
   return (
     <Container>
@@ -39,27 +31,28 @@ function Login() {
       <div className="content">
         <Header />
         <div className="form-container flex column a-center j-center">
-        <form onSubmit={handleLogin}>
-          {/* Rest of your components */}
-          <div className="container flex column">
-            <input
-              type="text"
-              placeholder="Email"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-            />
-            <button type="submit">Login to your account</button>
-          </div>
-        </form>
+          <div className="form flex column a-center j-center">
+            <div className="title">
+              <h3>Login</h3>
+            </div>
+            <div className="container flex column">
+              <input
+                type="text"
+                placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+              />
+              <button onClick={handleLogin}>Login to your account</button>
+            </div>
           </div>
         </div>
-      
+      </div>
     </Container>
   );
 }

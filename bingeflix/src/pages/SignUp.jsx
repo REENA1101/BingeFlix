@@ -5,7 +5,6 @@ import Header from '../components/Header'
 import { useState } from 'react'
 import {firebaseAuth} from "../utils/firebase-config"
 import {createUserWithEmailAndPassword} from "firebase/auth"
-import { Navigate } from 'react-router-dom'
 import { onAuthStateChanged } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 
@@ -31,7 +30,7 @@ export default function SignUp() {
   })
 
   return (
-    <Container showPassword = {showPassword}> 
+    <Container > 
         <BackgroundImage/>
        
     <div className='content'>
