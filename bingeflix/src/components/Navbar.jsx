@@ -8,6 +8,9 @@ import { signOut } from 'firebase/auth';
 import { Link } from 'react-router-dom';
 
 export default function Navbar({isScrolled}) {
+    const [showSearch, setShowSearch] = useState(false);
+    const [inputHover, setInputHover] = useState(false);
+
    const links = [
     { name: "Home", link:"/"},
     { name: "Tv Shows", link:"/tv"},
@@ -15,43 +18,44 @@ export default function Navbar({isScrolled}) {
     { name: "My List", link:"/mylist"}
 ];
 
-const [showSearch, setShowSearch] = useState(false);
-const [inputHover, setInputHover] = useState(false);
-
   return (
     <Container>
-        <nav className={`flex ${isScrolled ? "scrolled" : ""}`}>
+        <nav className={`${isScrolled ? "scrolled" : ""} flex`}>
           <div className="left flex a-center">
             <div className="brand flex a-center j-center">
                 <img src={logo} alt="logo"/>
             </div>
             <ul className="links flex">
             {
-                links.map(({name, link}) => (
+                links.map(({name, link}) => {
+                    return (
                     <li key={name}>
-                    <Link to={link}>{name}</Link>
+                       <Link to={link}>{name}</Link>
                     </li>
-                ))
-                }
+                )
+              })}
             </ul>
         </div>
         <div className= "right flex a-center">
              <div className={`search ${showSearch ? "show-search" : ""}`}>
                 <button 
-                onFocus = {()=>setShowSearch(true)} 
-                onBlur = {()=>{
-                        if(!inputHover) setShowSearch(false);
-                    }
-                }>
+                    onFocus = {()=>setShowSearch(true)} 
+                    onBlur = {()=>{
+                        if(!inputHover){
+                         setShowSearch(false);
+                        }
+                    }}>
                     <FaSearch/>
                 </button>
-                <input type= "text" placeholder = "Search"
-                onMouseEnter={()=>setInputHover(true)}
-                onMouseLeave={()=>setInputHover(false)}
-                onBlur = {()=>{
-                    setShowSearch(false)  
-                    setInputHover(false)
-                }}
+                <input 
+                    type= "text"
+                    placeholder = "Search"
+                    onMouseEnter={()=>setInputHover(true)}
+                    onMouseLeave={()=>setInputHover(false)}
+                    onBlur = {()=>{
+                        setShowSearch(false)  
+                        setInputHover(false)
+                  }}
                 />
              </div>
              <button onClick = {()=>signOut(firebaseAuth)}>
@@ -68,10 +72,12 @@ const Container = styled.div`
       background-color: black;
    }
    nav{
-    // position: sticky;
+    position: sticky;
     top: 0;
-    height: 100%;
-    width: 80%;
-
+    height: 6.5%;
+    width: 50px;
+      .left{
+        height: 4rem;
+      }
    }
 `
