@@ -32,8 +32,10 @@ const StyledHeader = styled.header`
     background-color: #e50914;
     border: none;
     cursor: pointer;
+    
     color: white;
     border-radius: 0.2rem;
+    
     font-weight: bolder;
     font-size: 1.05rem;
   }
