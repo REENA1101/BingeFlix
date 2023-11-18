@@ -63,11 +63,13 @@ const Container = styled.div`
     position: absolute;
     top: 0;
     left: 0;
+
     height: 100vh;
     width: 100vw;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);status
     grid-template-rows: 15vh 85vh;
     .form-container {
+
       gap: 2rem;
       height: 85vh;
       .form {
