@@ -5,6 +5,7 @@ import {getAuth} from "firebase/auth";
 const firebaseConfig = {
   apiKey: "AIzaSyCOG972JyzHUdkaTVL8rNR_23IgdHC9U_Y",
   authDomain: "bingeflix-7fafe.firebaseapp.com",
+  
   projectId: "bingeflix-7fafe",
   
   storageBucket: "bingeflix-7fafe.appspot.com",

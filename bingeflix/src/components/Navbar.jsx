@@ -75,6 +75,7 @@ const Container = styled.div`
     position: sticky;
     top: 0;
     height: 6.5%;
+    
     width: 50px;
       .left{
         height: 4rem;
