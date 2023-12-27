@@ -6,10 +6,12 @@ import { FaPlay } from 'react-icons/fa';
 import backgroundImage from "../assets/home.jpg";
 import MovieLogo from "../assets/homeTitle.webp";
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function BingeFlix() {
    const [isScrolled, setIsScrolled] = useState(false);
+   const navigate= useNavigate(); 
 
    window.onscroll = ()=>{
     setIsScrolled(window.pageYOffset===0 ? false : true);
@@ -33,11 +35,11 @@ export default function BingeFlix() {
         </div>
 
         <div className="buttons flex">
-          <button className="flex j-center a-center">
+          <button className="flex j-center a-center" onClick={()=>navigate('/player')}>
              <FaPlay/> Play
           </button>
 
-          <button className="flex j-center a-center">
+          <button className="flex j-center a-center" >
              <AiOutlineInfoCircle/> More Info
           </button>
         </div>
