@@ -67,7 +67,7 @@ background-color:black;
   }
   .logo{
     img{
-      width: 100%;
+      width: 90%;
       height: 100%;
       margin-left:5rem;
     }
