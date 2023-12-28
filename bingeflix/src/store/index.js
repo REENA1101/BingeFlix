@@ -1,5 +1,5 @@
 import {configureStore, createAsyncThunk, createSlice} from "@reduxjs/toolkit"
-import {API_KEY, TMDB_BASE_URL } from '../utils/constants'
+import { API_KEY, TMDB_BASE_URL } from "../utils/constants";
 import axios from "axios";
 
 const initialState = {
@@ -11,25 +11,28 @@ const initialState = {
 export const getGenres = createAsyncThunk("netflix/genres", async()=>{
     const {
         data:{genres},
-    } = await axios.get(`${TMDB_BASE_URL}/genre/movie/list?api_key=${API_KEY}`
-    );
+    } = await axios.get(
+        "https://api.themoviedb.org/3/movie/550?api_key=00e28d4781b40c8506b260b57321b3ed"
+    )
     return genres;
 });
 
 const createArrayFromRawData = (array, moviesArray, genres) => {
+    console.log(array)
     array.forEach((movie) => {
       const movieGenres = [];
       movie.genre_ids.forEach((genre) => {
         const name = genres.find(({ id }) => id === genre);
         if (name) movieGenres.push(name.name);
       });
-      if (movie.backdrop_path)
+      if (movie.backdrop_path){
         moviesArray.push({
           id: movie.id,
           name: movie?.original_name ? movie.original_name : movie.original_title,
           image: movie.backdrop_path,
           genres: movieGenres.slice(0, 3),
         });
+      }
     });
   };
 
@@ -41,26 +44,28 @@ const createArrayFromRawData = (array, moviesArray, genres) => {
       } = await axios.get(`${api}${paging ? `&page=${i}` : ""}`);
       createArrayFromRawData(results, moviesArray, genres);
     }
-    return moviesArray;
+    return moviesArray; // Return moviesArray after the loop completes
   };
 
   export const fetchMovies = createAsyncThunk(
     "netflix/trending",
-    async ({ type }, thunkAPI) => {
+    async ({ type }, thunkApi) => {
       const {
         netflix: { genres },
-      } = thunkAPI.getState();
-      return getRawData(
+      } = thunkApi.getState();
+      const data = getRawData(
         `${TMDB_BASE_URL}/trending/${type}/week?api_key=${API_KEY}`,
         genres,
         true
       );
+      console.log(data)
     }
+
   );
 
 
 
-// return getRawData(`${TMBD_BASE_URL}/discover/${type}?api_key=${API_KEY}&with_genres=&{genre}`)
+// return getRawData(`${TMBD_BASE_URL}/discover/${type}?api_key=${API_KEY}&with_genres=${genre}`)
 
 const BingeflixSlice = createSlice({
     name: "NetFlix",
@@ -78,3 +83,5 @@ export const store = configureStore({
         bingeflix: BingeflixSlice.reducer,
      },
 })
+
+// export const { setGenres, setMovies } = NetflixSlice.actions;
