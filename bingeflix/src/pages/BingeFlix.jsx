@@ -7,20 +7,29 @@ import backgroundImage from "../assets/home.jpg";
 import MovieLogo from "../assets/homeTitle.webp";
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { getGenres } from '../store';
+import { useDispatch, useSelector } from 'react-redux';
+import { getGenres, fetchMovies } from '../store';
 
 
 
 export default function BingeFlix() {
    const [isScrolled, setIsScrolled] = useState(false);
-   const navigate= useNavigate(); 
+  //  const movies = useSelector((state)=>state.netflix.movies);
+   const genres = useSelector((state)=>state.netflix.genres);
+   const genresLoaded = useSelector((state)=> state.netflix.genresLoaded);
 
+   const navigate = useNavigate();
    const dispatch = useDispatch();
 
    useEffect(()=>{
       dispatch(getGenres())
    },[])
+
+   useEffect(()=>{
+      if(genresLoaded) {
+        dispatch(fetchMovies({genres, type:"all"}));
+  }
+}, [genresLoaded])
 
    window.onscroll = ()=>{
     setIsScrolled(window.pageYOffset===0 ? false : true);
