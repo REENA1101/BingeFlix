@@ -13,6 +13,7 @@ import { FaPlay } from "react-icons/fa";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 
 
+
 export default function BingeFlix() {
    const [isScrolled, setIsScrolled] = useState(false);
   //  const movies = useSelector((state)=>state.netflix.movies);

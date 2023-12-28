@@ -1,4 +1,7 @@
-import {configureStore, createAsyncThunk, createSlice} from "@reduxjs/toolkit"
+import {configureStore,
+     createAsyncThunk,
+      createSlice
+    } from "@reduxjs/toolkit"
 import { API_KEY, TMDB_BASE_URL } from "../utils/constants";
 import axios from "axios";
 
@@ -9,59 +12,60 @@ const initialState = {
 };
 
 export const getGenres = createAsyncThunk("netflix/genres", async()=>{
-    const {
-        data:{genres},
-    } = await axios.get(
-        "https://api.themoviedb.org/3/movie/550?api_key=00e28d4781b40c8506b260b57321b3ed"
+    const {data} = await axios.get(
+        `${TMDB_BASE_URL}/genre/movie/list?api_key=${API_KEY}`
     )
-    return genres;
+    return data;
 });
 
-const createArrayFromRawData = (array, moviesArray, genres) => {
-    console.log(array)
-    array.forEach((movie) => {
-      const movieGenres = [];
-      movie.genre_ids.forEach((genre) => {
-        const name = genres.find(({ id }) => id === genre);
-        if (name) movieGenres.push(name.name);
-      });
-      if (movie.backdrop_path){
-        moviesArray.push({
-          id: movie.id,
-          name: movie?.original_name ? movie.original_name : movie.original_title,
-          image: movie.backdrop_path,
-          genres: movieGenres.slice(0, 3),
-        });
-      }
-    });
-  };
+// export const getGenres = createAsyncThunk("netflix/genres", async () => {
+//     const response = await axios.get(`${TMDB_BASE_URL}/genre/movie/list?api_key=${API_KEY}`);
+//     return response.data.genres;
+//   });
 
-  const getRawData = async (api, genres, paging = false) => {
-    const moviesArray = [];
-    for (let i = 1; moviesArray.length < 60 && i < 10; i++) {
-      const {
-        data: { results },
-      } = await axios.get(`${api}${paging ? `&page=${i}` : ""}`);
-      createArrayFromRawData(results, moviesArray, genres);
-    }
-    return moviesArray; // Return moviesArray after the loop completes
-  };
+// const createArrayFromRawData = (array, moviesArray, genres) => {
+//     console.log(array)
+//     array.forEach((movie) => {
+//       const movieGenres = [];
+//       movie.genre_ids.forEach((genre) => {
+//         const name = genres.find(({ id }) => id === genre);
+//         if (name) movieGenres.push(name.name);
+//       });
+//       if (movie.backdrop_path){
+//         moviesArray.push({
+//           id: movie.id,
+//           name: movie?.original_name ? movie.original_name : movie.original_title,
+//           image: movie.backdrop_path,
+//           genres: movieGenres.slice(0, 3),
+//         });
+//       }
+//     });
+//   };
 
-  export const fetchMovies = createAsyncThunk(
-    "netflix/trending",
-    async ({ type }, thunkApi) => {
-      const {
-        netflix: { genres },
-      } = thunkApi.getState();
-      const data = getRawData(
-        `${TMDB_BASE_URL}/trending/${type}/week?api_key=${API_KEY}`,
-        genres,
-        true
-      );
-      console.log(data)
-    }
+//   const getRawData = async (api, genres, paging = false) => {
+//     const moviesArray = [];
+//     for (let i = 1; moviesArray.length < 60 && i < 10; i++) {
+//       const {
+//         data: { results },
+//       } = await axios.get(`${api}${paging ? `&page=${i}` : ""}`);
+//       createArrayFromRawData(results, moviesArray, genres);
+//     }
+//     return moviesArray; 
+//   };
 
-  );
+//   export const fetchMovies = createAsyncThunk(
+//     "netflix/trending",
+//     async ({ type }, thunkApi) => {
+//       const {
+//         netflix: { genres },
+//       } = thunkApi.getState();
+//       const data = getRawData(
+//         `${TMDB_BASE_URL}/trending/${type}/week?api_key=${API_KEY}`,
+//         genres,
+//         true
+//       );
+//       console.log(data)
+//     });
 
 
 
@@ -80,7 +84,7 @@ const BingeflixSlice = createSlice({
 
 export const store = configureStore({
      reducer: {
-        bingeflix: BingeflixSlice.reducer,
+        netflix: BingeflixSlice.reducer,
      },
 })
 
