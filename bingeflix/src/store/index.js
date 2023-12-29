@@ -12,10 +12,10 @@ const initialState = {
 };
 
 export const getGenres = createAsyncThunk("netflix/genres", async()=>{
-    const {data} = await axios.get(
+    const {data:{genres}} = await axios.get(
         `${TMDB_BASE_URL}/genre/movie/list?api_key=${API_KEY}`
     )
-    return data;
+    return genres;
 });
 
 // export const getGenres = createAsyncThunk("netflix/genres", async () => {
@@ -71,20 +71,20 @@ export const getGenres = createAsyncThunk("netflix/genres", async()=>{
 
 // return getRawData(`${TMBD_BASE_URL}/discover/${type}?api_key=${API_KEY}&with_genres=${genre}`)
 
-const BingeflixSlice = createSlice({
+const NetflixSlice = createSlice({
     name: "NetFlix",
     initialState,
     extraReducers:(builder)=>{
         builder.addCase(getGenres.fulfilled,(state,action)=>{
         state.genres= action.payload;
         state.genresLoaded = true;
-    })
-    },
+    });
+  },
 });
 
 export const store = configureStore({
      reducer: {
-        netflix: BingeflixSlice.reducer,
+        netflix: NetflixSlice.reducer,
      },
 })
 

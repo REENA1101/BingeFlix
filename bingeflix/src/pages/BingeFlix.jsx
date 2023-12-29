@@ -16,7 +16,6 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 
 export default function BingeFlix() {
    const [isScrolled, setIsScrolled] = useState(false);
-  //  const movies = useSelector((state)=>state.netflix.movies);
    const genres = useSelector((state)=>state.netflix.genres);
    const genresLoaded = useSelector((state)=> state.netflix.genresLoaded);
 
@@ -27,11 +26,11 @@ export default function BingeFlix() {
       dispatch(getGenres())
    },[])
 
-   useEffect(()=>{
-      if(genresLoaded) {
-        dispatch(fetchMovies({genres, type:"all"}));
-  }
-}, [genresLoaded])
+//    useEffect(()=>{
+//       if(genresLoaded) {
+//         dispatch(fetchMovies({genres, type:"all"}));
+//   }
+// }, [genresLoaded])
 
    window.onscroll = ()=>{
     setIsScrolled(window.pageYOffset===0 ? false : true);
