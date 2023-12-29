@@ -71,6 +71,8 @@ export const getGenres = createAsyncThunk("netflix/genres", async()=>{
 
 // return getRawData(`${TMBD_BASE_URL}/discover/${type}?api_key=${API_KEY}&with_genres=${genre}`)
 
+
+
 const NetflixSlice = createSlice({
     name: "NetFlix",
     initialState,
