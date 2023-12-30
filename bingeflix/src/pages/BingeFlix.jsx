@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchMovies, getGenres } from "../store";
 import { FaPlay } from "react-icons/fa";
 import { AiOutlineInfoCircle } from "react-icons/ai";
+import Slider from "../components/Slider";
 
 
 
@@ -67,7 +68,10 @@ console.log(movies);
         </div>
       </div>
       </div>
+
+      <Slider movies ={movies}/>
     </Container>
+
   )
 }
 
