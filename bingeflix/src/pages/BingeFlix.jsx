@@ -26,11 +26,11 @@ export default function BingeFlix() {
       dispatch(getGenres())
    },[])
 
-//    useEffect(()=>{
-//       if(genresLoaded) {
-//         dispatch(fetchMovies({genres, type:"all"}));
-//   }
-// }, [genresLoaded])
+   useEffect(()=>{
+      if(genresLoaded) {
+        dispatch(fetchMovies({genres, type:"all"}));
+  }
+});
 
    window.onscroll = ()=>{
     setIsScrolled(window.pageYOffset===0 ? false : true);
