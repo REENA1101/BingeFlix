@@ -20,7 +20,7 @@ export default function Card({movieData, isLiked=false}) {
 
         {isHovered&& (
             <div className= "hover">
-                <div  className='image-vide-container'>
+                <div  className='image-video-container'>
                     <img
                       src={`https://image.tmdb.org/t/p/w500${movieData.image}`}
                       alt=""
@@ -63,9 +63,9 @@ export default function Card({movieData, isLiked=false}) {
                 </div>
 
                 <div className="genres flex">
-                    <ul className="flex">{movieData.genres.map((genre)=>{
+                    <ul className="flex">{movieData.genres.map((genre)=>(
                            <li key={genre}>{genre}</li>
-                    })}
+                    ))}
                     </ul>
                 </div>
             </div> 
@@ -94,6 +94,32 @@ img{
     position:absolute;
     top: -18vh;
     left:0;
-    
+    border-radius:0.3rem;
+    box-shadow: rgba(0,0,0,0.75) 0px 3px 10px;
+    background-color: #181818;
+    transition: 0.3s ease-in-out;
+    .image-video-container{
+        position:relative;
+        height:140px;
+         img{
+            width:100%;
+            height: 140px;
+            object-fit:cover;
+            border-radius: 0.3rem;
+            top: 0;
+            z-index: 4;
+            position:absolute;
+         }
+         video{
+            
+            width:100%;
+            height:140px;
+            object-fit: cover;
+            border-radius:0.3rem;
+            top: 0;
+            z-index:5;
+            position:absolute;
+         }
+    }
 }
 `;
