@@ -17,10 +17,8 @@ import Slider from "../components/Slider";
 
 export default function BingeFlix() {
    const [isScrolled, setIsScrolled] = useState(false);
-  //  const genres = useSelector((state)=>state.netflix.genres);
    const genresLoaded = useSelector((state)=> state.netflix.genresLoaded);
    const movies = useSelector((state)=>state.netflix.movies);
-
    const navigate = useNavigate();
    const dispatch = useDispatch();
 
