@@ -131,7 +131,7 @@ img {
     }
     svg {
       font-size: 1.4rem;
-    //   margin-left:1rem;
+      margin-right:1rem;
       margin-top:0.5rem;
       gap:2rem;
       cursor: pointer;
