@@ -9,7 +9,7 @@ export default React.memo(function CardSlider({data,title}) {
    const listRef = useRef();
 
    const handleDirection = (direction) => {
-      console.log(useRef, direction)
+      // console.log(useRef, direction)
     let distance = listRef.current.getBoundingClientRect().x - 70;
     if (direction === "left" && sliderPosition > 0) {
       listRef.current.style.transform = `translateX(${230 + distance}px)`;

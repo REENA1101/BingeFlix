@@ -38,7 +38,7 @@ export default function BingeFlix() {
     setIsScrolled(window.pageYOffset===0 ? false : true);
     return ()=>(window.onscroll = null);
    }
-console.log(movies);
+// console.log(movies);
 
 
   return (

@@ -24,7 +24,7 @@ export const getGenres = createAsyncThunk("netflix/genres", async()=>{
 //   });
 
 const createArrayFromRawData = (array, moviesArray, genres) => {
-    console.log(array)
+    // console.log(array)
 
     array.forEach((movie) => {
       const movieGenres = [];
@@ -53,8 +53,10 @@ const createArrayFromRawData = (array, moviesArray, genres) => {
         `${api}${paging ? `&page=${i}` : ""}`
       );
       createArrayFromRawData(results, moviesArray, genres);
-      return moviesArray; 
+    
     }
+    return moviesArray
+    // console.log({})
   };
 
   export const fetchMovies = createAsyncThunk(
