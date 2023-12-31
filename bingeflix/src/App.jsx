@@ -4,6 +4,7 @@ import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import BingeFlix from './pages/BingeFlix'
 import Player from './pages/Player'
+import Movies from './pages/Movies'
 
 
 export default function App() {
