@@ -26,18 +26,20 @@ export default function Movies() {
     useEffect(()=>{
        if(genresLoaded) {
          dispatch(fetchMovies
-            ({ type:"movies"}));
+            ({ genres, type:"movie"}));
    }
  }, [genresLoaded]);
  
-    window.onscroll = ()=>{
-     setIsScrolled(window.pageYOffset===0 ? false : true);
-     return ()=>(window.onscroll = null);
-    }
+  
 
     onAuthStateChanged(firebaseAuth, (currentUser) => {
         // if (currentUser) navigate("/");
       });
+
+      window.onscroll = ()=>{
+        setIsScrolled(window.pageYOffset===0 ? false : true);
+        return ()=>(window.onscroll = null);
+       }
   return (
     <Container>
         <div className="navbar">
@@ -45,11 +47,10 @@ export default function Movies() {
         </div>
 
         <div className="data">
-        <SelectGenre genres={genres}/>
+        <SelectGenre genres={genres} type="movie"/>
             {
                 movies.length? <Slider movies={movies}/>:
                 <NotAvailable/>
-
             }
         </div>
     </Container>
