@@ -15,7 +15,7 @@ export default function Movies() {
     const [isScrolled, setIsScrolled] = useState(false);
     const genresLoaded = useSelector((state)=> state.netflix.genresLoaded);
     const movies = useSelector((state)=>state.netflix.movies);
-    const genres = useSelector((state)=>state.netflix.movies);
+    const genres = useSelector((state)=>state.netflix.genres);
     const navigate = useNavigate();
     const dispatch = useDispatch();
  
@@ -26,9 +26,9 @@ export default function Movies() {
     useEffect(()=>{
        if(genresLoaded) {
          dispatch(fetchMovies
-            ({ genres, type:"movie"}));
+            ({ type:"movies"}));
    }
- }, [genresLoaded]);
+ });
  
   
 
