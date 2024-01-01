@@ -24,9 +24,10 @@ export default function SelectGenre({ genres, type }) {
 }
 
 const Select = styled.select`
-  margin-left: 5rem;
+  margin-left: 2.4rem;
   cursor: pointer;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   background-color: rgba(0, 0, 0, 0.4);
   color: white;
+  padding:0.3rem;
 `
