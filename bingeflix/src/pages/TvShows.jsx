@@ -12,7 +12,7 @@ import NotAvailable from '../components/NotAvailable';
 import SelectGenre from '../components/SelectGenre';
 
 
-export default function Movies() {
+export default function TvShows() {
     const [isScrolled, setIsScrolled] = useState(false);
     const genresLoaded = useSelector((state)=> state.netflix.genresLoaded);
     const movies = useSelector((state)=>state.netflix.movies);
@@ -27,7 +27,7 @@ export default function Movies() {
     useEffect(()=>{
        if(genresLoaded) {
          dispatch(fetchMovies
-            ({ type:"movies"}));
+            ({ type:"tv"}));
    }
  },[genresLoaded]);
 
@@ -46,7 +46,7 @@ export default function Movies() {
         </div>
 
         <div className="data">
-        <SelectGenre genres={genres} type="movie"/>
+        <SelectGenre genres={genres} type="tv"/>
             {
                 movies.length? <Slider movies={movies}/>:
                 <NotAvailable/>
