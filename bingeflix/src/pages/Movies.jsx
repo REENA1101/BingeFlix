@@ -11,6 +11,7 @@ import Slider from '../components/Slider';
 import NotAvailable from '../components/NotAvailable';
 import SelectGenre from '../components/SelectGenre';
 
+
 export default function Movies() {
     const [isScrolled, setIsScrolled] = useState(false);
     const genresLoaded = useSelector((state)=> state.netflix.genresLoaded);
@@ -28,9 +29,7 @@ export default function Movies() {
          dispatch(fetchMovies
             ({ type:"movies"}));
    }
- });
- 
-  
+ },[genresLoaded]);
 
     onAuthStateChanged(firebaseAuth, (currentUser) => {
         // if (currentUser) navigate("/");

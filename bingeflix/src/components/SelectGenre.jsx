@@ -6,16 +6,19 @@ import { fetchDataByGenre } from "../store";
 
 
 export default function SelectGenre({ genres, type }) {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+  const handleGenreChange = (e) => {
+    dispatch(fetchDataByGenre({ genre: e.target.value, type }));
+  };
+
   return (
-    <Select>
-      {genres.map((genre) => {
-        return (
-          <option value={genre.id} key={genre.id}>
-            {genre.name}
-          </option>
-        );
-      })}
+    <Select className="flex" onChange={handleGenreChange}>
+      {genres.map((genre) => (
+        <option value={genre.id} key={genre.id}>
+          {genre.name}
+        </option>
+      ))}
     </Select>
   );
 }
@@ -26,4 +29,4 @@ const Select = styled.select`
   font-size: 1.4rem;
   background-color: rgba(0, 0, 0, 0.4);
   color: white;
-`;
+`
