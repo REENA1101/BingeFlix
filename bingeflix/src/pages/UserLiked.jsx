@@ -10,6 +10,7 @@ import Navbar from '../components/Navbar';
 import Slider from '../components/Slider';
 import NotAvailable from '../components/NotAvailable';
 import SelectGenre from '../components/SelectGenre';
+import Card from '../components/Card';
 
 export default function UserLiked(){
     const [isScrolled, setIsScrolled] = useState(false);
@@ -46,7 +47,18 @@ export default function UserLiked(){
 
     
 
-    return <Container>UserLiked</Container>
+    return <Container>
+        <Navbar isScrolled = {isScrolled}/>
+        <div className='content flex column'>
+            <h1>My List</h1>
+
+            <div className="grid flex">
+               {movies.map((movie,index)=>{
+                return <Card movieData={movie} index= {index} key = {movie.id} isLiked = {true}/>
+               })}
+            </div>
+        </div>
+    </Container>
 }
 
 const Container = styled.div`
