@@ -6,10 +6,10 @@ import { firebaseAuth } from "../utils/firebase-config";
 import Card from "../components/Card";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
-import { getuserlikedMovies } from "../store";
+import { getUsersLikedMovies } from "../store";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function UserListedMovies() {
+export default function UserLiked() {
   const movies = useSelector((state) => state.netflix.movies);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ export default function UserListedMovies() {
 
   useEffect(() => {
     if (email) {
-      dispatch(getuserlikedMovies(email));
+      dispatch(getUsersLikedMovies(email));
     }
   }, [email]);
 
