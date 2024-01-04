@@ -14,12 +14,12 @@ import Card from '../components/Card';
 
 export default function UserLiked(){
     const [isScrolled, setIsScrolled] = useState(false);
-    const genresLoaded = useSelector((state)=> state.netflix.genresLoaded);
     const movies = useSelector((state)=>state.netflix.movies);
-    const genres = useSelector((state)=>state.netflix.genres);
-    const [email, setEmail] = useState(undefined);
+   
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const [email, setEmail] = useState(undefined);
 
     onAuthStateChanged(firebaseAuth, (currentUser) => {
         if (currentUser) setEmail(currentUser.email);
@@ -31,14 +31,8 @@ export default function UserLiked(){
      if(email){
         dispatch(getuserlikedMovies(email))
      }
-    },[])
+    },[email])
  
-    useEffect(()=>{
-       if(genresLoaded) {
-         dispatch(fetchMovies
-            ({ type:"movies"}));
-   }
- },[genresLoaded]);
 
  window.onscroll = ()=>{
   setIsScrolled(window.pageYOffset===0 ? false : true);
@@ -62,4 +56,17 @@ export default function UserLiked(){
 }
 
 const Container = styled.div`
+.content{
+    margin:1rem;
+    margin-top: 8rem;
+    gap:3rem;
+    h1{
+         margin-left:1rem;  
+    }
+    .grid{
+        flex-wrap:wrap;
+        gap:1rem;
+        margin-left:1rem;
+    }
+}
 `
