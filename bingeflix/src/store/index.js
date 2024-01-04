@@ -101,20 +101,7 @@ const createArrayFromRawData = (array, moviesArray, genres) => {
           email, movieId
         }) 
         return movies
-      })
-
-      // export const fetchMovies = createAsyncThunk(
-      //   "netflix/trending",
-      //   async ({ type }, thunkApi) => {
-      //        const {
-      //           netflix: {genres},
-      //           } = thunkApi.getState();
-      //       return getRawData(
-      //       `${TMDB_BASE_URL}/trending/${type}/week?api_key=${API_KEY}`,
-      //       genres,
-      //       true
-      //     );
-      //   });
+      });
 
 
 const NetflixSlice = createSlice({
@@ -146,4 +133,4 @@ export const store = configureStore({
      },
 })
 
-// export const { setGenres, setMovies } = NetflixSlice.actions;
+export const { setGenres, setMovies } = NetflixSlice.actions;
