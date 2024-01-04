@@ -35,3 +35,11 @@ module.exports.addToLikedMovies = async (req, res) => {
       return res.json({msg:"Error fetching Movie"});
     }
   }
+
+  module.exports.removeFromLikedMovies = async(req,res)=>{
+       try{
+
+       }catch(err){
+        return res.json
+       }
+  }
