@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { fetchMovies, getGenres } from '../store';
+import { fetchMovies, getGenres, getuserlikedMovies } from '../store';
 import { firebaseAuth } from '../utils/firebase-config';
 import { onAuthStateChanged } from 'firebase/auth';
 import styled from 'styled-components';
@@ -11,17 +11,25 @@ import Slider from '../components/Slider';
 import NotAvailable from '../components/NotAvailable';
 import SelectGenre from '../components/SelectGenre';
 
-
-export default function Movies() {
+export default function UserLiked(){
     const [isScrolled, setIsScrolled] = useState(false);
     const genresLoaded = useSelector((state)=> state.netflix.genresLoaded);
     const movies = useSelector((state)=>state.netflix.movies);
     const genres = useSelector((state)=>state.netflix.genres);
+    const [email, setEmail] = useState(undefined);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    onAuthStateChanged(firebaseAuth, (currentUser) => {
+        if (currentUser) setEmail(currentUser.email);
+        else navigate("/login");
+      });
+    
  
     useEffect(()=>{
-       dispatch(getGenres())
+     if(email){
+        dispatch(getuserlikedMovies(email))
+     }
     },[])
  
     useEffect(()=>{
@@ -36,35 +44,10 @@ export default function Movies() {
   return ()=>(window.onscroll = null);
  }
 
-    onAuthStateChanged(firebaseAuth, (currentUser) => {
-        // if (currentUser) navigate("/");
-      });
+    
 
-   
-  return (
-    <Container>
-        <div className="navbar">
-             <Navbar isScrolled={isScrolled}/>
-        </div>
-
-        <div className="data">
-        <SelectGenre genres={genres} type="movie"/>
-            {
-                movies.length? <Slider movies={movies}/>:
-                <NotAvailable/>
-            }
-        </div>
-    </Container>
-  )
+    return <Container>UserLiked</Container>
 }
 
 const Container = styled.div`
-.data{
-     margin-top:8rem;
-     .not-available{
-        text-align:center;
-        color:white;
-        margin-top:4rem;
-     }
-}
 `

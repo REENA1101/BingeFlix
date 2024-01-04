@@ -22,13 +22,16 @@ export default React.memo(function Card({movieData, isLiked=false}) {
     else navigate("/login");
   });
 
-  const addToList = async() =>{
-     try{
-        await axios.post("http//localhost:5000/api/user/add", {email, data:movieData})
-     }catch(err){
-      console.log(err);
-     }
-  }  
+  const addToList = async () => {
+    try {
+      await axios.post("http://localhost:5000/api/user/add", {
+        email,
+        data: movieData,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Container onMouseEnter={()=> setIsHovered(true)}
