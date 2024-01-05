@@ -27,7 +27,7 @@ const Select = styled.select`
   margin-left: 2.4rem;
   cursor: pointer;
   font-size: 1.2rem;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 1);
   color: white;
   padding:0.3rem;
 `
