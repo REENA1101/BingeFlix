@@ -44,7 +44,7 @@ Netflix API: Provides dynamic data for movies and TV shows.
 7.
 <img width="960" alt="Screenshot 2024-01-26 200147" src="https://github.com/REENA1101/BingeFlix/assets/112796706/372f69c9-db9e-47bc-a2ca-d9759601c979">
 
-The app is under development, Happy coding...
+The app is still under development, Happy coding...
 
 
 
